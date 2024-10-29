@@ -7,23 +7,28 @@
     <style>
         /* Estilos básicos */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #f8f8f8;
-        }
-
-        header {
-            background-color: #333;
             color: #fff;
-            padding: 1rem;
+            background-color: #111;
+            background-image: linear-gradient(to right, #111, #222);
             text-align: center;
         }
 
+        header {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 2rem;
+        }
+
         header h1 {
-            margin: 0;
-            font-size: 2em;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 1.5em;
+            margin: 0.5em 0 1em 0;
         }
 
         nav {
@@ -31,15 +36,19 @@
         }
 
         nav a {
-            color: #fff;
+            color: #ffa500;
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Color de hover */
         }
 
         .container {
             padding: 2rem;
-            text-align: center;
         }
 
         .products {
@@ -47,29 +56,64 @@
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
+            margin: 2rem 0;
         }
 
         .product {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            width: 250px;
             padding: 1rem;
-            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .product:hover {
+            transform: scale(1.05); /* Efecto de hover */
         }
 
         .product img {
             width: 100%;
             height: auto;
-            border-radius: 5px;
+            border-radius: 10px;
         }
 
         .footer {
-            background-color: #333;
-            color: #fff;
+            background-color: rgba(51, 51, 51, 0.8);
             padding: 1rem;
-            text-align: center;
             margin-top: 2rem;
+        }
+
+        form input, form textarea {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        form button {
+            background-color: #ffa500;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #ffcc00;
+        }
+
+        .new-arrivals {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            width: 80%;
         }
     </style>
 </head>
@@ -82,6 +126,7 @@
         <nav>
             <a href="#productos">Productos</a>
             <a href="#nosotros">Nosotros</a>
+            <a href="#novedades">Novedades</a>
             <a href="#contacto">Contacto</a>
         </nav>
     </header>
@@ -117,14 +162,22 @@
         <p>En WW, creemos en el poder de la moda para expresar personalidad y estilo. Nuestra misión es ofrecer prendas únicas y de alta calidad, diseñadas para que te sientas auténtico y seguro.</p>
     </section>
 
+    <!-- Sección de Novedades -->
+    <section id="novedades" class="container">
+        <h2>Novedades</h2>
+        <div class="new-arrivals">
+            <p>¡Descubre lo último en moda con WW! Nuevas colecciones cada semana para que siempre estés a la vanguardia.</p>
+        </div>
+    </section>
+
     <!-- Sección de Contacto -->
     <section id="contacto" class="container">
         <h2>Contáctanos</h2>
         <p>¿Tienes alguna pregunta? Envíanos un mensaje:</p>
-        <form action="#" method="post">
-            <input type="text" placeholder="Nombre" required><br><br>
-            <input type="email" placeholder="Correo electrónico" required><br><br>
-            <textarea placeholder="Mensaje" required></textarea><br><br>
+        <form action="#" method="post" onsubmit="return validateForm()">
+            <input type="text" placeholder="Nombre" required><br>
+            <input type="email" placeholder="Correo electrónico" required><br>
+            <textarea placeholder="Mensaje" required></textarea><br>
             <button type="submit">Enviar</button>
         </form>
     </section>
@@ -133,6 +186,21 @@
     <footer class="footer">
         <p>&copy; 2024 WW. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        function validateForm() {
+            const name = document.querySelector('input[type="text"]').value;
+            const email = document.querySelector('input[type="email"]').value;
+            const message = document.querySelector('textarea').value;
+            if (name && email && message) {
+                alert("Gracias por tu mensaje, " + name + "!");
+                return true; // Permite el envío del formulario
+            } else {
+                alert("Por favor, completa todos los campos.");
+                return false; // Previene el envío del formulario
+            }
+        }
+    </script>
 
 </body>
 </html>
